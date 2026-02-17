@@ -1,0 +1,35 @@
+{
+    "manifest_version": 3,
+    "name": "RepoMind: GitHub Mind Map & Analyzer",
+    "version": "1.0",
+    "description": "Analyze GitHub repositories, generate mind maps, statistics, and presentations.",
+    "permissions": [
+        "sidePanel",
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://github.com/*",
+        "https://api.github.com/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "side_panel": {
+        "default_path": "sidepanel.html"
+    },
+    "action": {
+        "default_title": "Open RepoMind"
+    },
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "assets/*"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ]
+}

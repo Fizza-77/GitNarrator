@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RepoMind</title>
+  <link rel="stylesheet" href="sidepanel.css">
+
+  <!-- External Libraries (Must be downloaded to assets/libs/) -->
+  <script src="assets/libs/chart.min.js"></script>
+  <script src="assets/libs/mermaid.min.js"></script>
+  <script src="assets/libs/pptxgen.bundle.js"></script>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-top">
+      <h1>RepoMind <span class="version">v1.0</span></h1>
+      <select id="mode-toggle" title="Switch Explanation Mode">
+        <option value="beginner">Beginner Mode</option>
+        <option value="advanced">Advanced Mode</option>
+      </select>
+    </div>
+    <div id="repo-info" class="repo-info">
+      <span id="repo-name">Detecting Repo...</span>
+      <span id="repo-branch" class="badge">--</span>
+    </div>
+
+    <details class="settings-panel">
+      <summary>⚙️ Settings</summary>
+      <div class="settings-content">
+        <label for="openai-key">OpenAI API Key (Optional for GenAI):</label>
+        <input type="password" id="openai-key" placeholder="sk-...">
+        <p class="tiny-text">Key is stored locally in your browser. Leave empty for Basic Mode.</p>
+      </div>
+    </details>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="tab-overview">Overview</button>
+    <button class="tab-btn" data-tab="tab-mindmap">Mind Map</button>
+    <button class="tab-btn" data-tab="tab-code">Code</button>
+    <button class="tab-btn" data-tab="tab-stats">Stats</button>
+  </nav>
+
+  <main>
+    <!-- OVERVIEW TAB -->
+    <section id="tab-overview" class="tab-content active">
+      <div class="card">
+        <h3>📄 README Summary</h3>
+        <div id="readme-summary" class="markdown-body">
+          <p class="loading-text">Waiting for repository...</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🚀 Tech Stack</h3>
+        <ul id="tech-stack-list" class="tags">
+          <!-- Populated by JS -->
+        </ul>
+      </div>
+
+      <div class="actions">
+        <select id="ppt-mode" class="ppt-select">
+          <option value="basic">Basic Presentation</option>
+          <option value="advanced">Advanced Presentation</option>
+        </select>
+        <button id="btn-generate-ppt" class="primary-btn">📥 Generate PPT</button>
+      </div>
+    </section>
+
+    <!-- MIND MAP TAB -->
+    <section id="tab-mindmap" class="tab-content">
+      <div class="mindmap-container">
+        <div class="mermaid" id="mermaid-graph">
+          <!-- Graph renders here -->
+        </div>
+      </div>
+      <div class="controls">
+        <button id="refresh-map" class="secondary-btn">Refresh Map</button>
+      </div>
+    </section>
+
+    <!-- CODE EXPLORER TAB -->
+    <section id="tab-code" class="tab-content">
+      <div class="file-explorer">
+        <select id="file-select">
+          <option value="">Select a file to analyze...</option>
+        </select>
+        <div id="file-explanation" class="explanation-box">
+          <p class="placeholder-text">Select a source file to see AI explanation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS TAB -->
+    <section id="tab-stats" class="tab-content">
+      <div class="chart-container">
+        <canvas id="langChart"></canvas>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span id="stat-commits">0</span>
+          <label>Commits</label>
+        </div>
+        <div class="stat-box">
+          <span id="stat-contributors">0</span>
+          <label>Contributors</label>
+        </div>
+        <div class="stat-box">
+          <span id="stat-stars">0</span>
+          <label>Stars</label>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SCRIPTS -->
+  <script src="utils/dom-utils.js"></script>
+  <script src="github-api.js"></script>
+  <script src="ai-service.js"></script>
+  <script src="mindmap.js"></script>
+  <script src="code-analyzer.js"></script>
+  <script src="ppt-generator.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+
+</html>
