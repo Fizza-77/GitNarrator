@@ -103,11 +103,6 @@ Duration: 14 Days
 
 Developed as part of Software Project Management (SPM).
 
-Team Members
-
-Minahil Sharif – Project Manager / QA
-
-Fizza Ijaz – Developer
 
 📌 Limitations
 
